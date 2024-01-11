@@ -569,7 +569,7 @@
 #include "assets/friends/f511.h"
 #include "assets/friends/f512.h"
 #include "assets/friends/f513.h"
-//#include "assets/friends/f514.h"
+#include "assets/friends/f514.h"
 
 #define uint GLushort // it's a short don't forget that
 #define sint GLshort  // and this.
@@ -729,8 +729,8 @@ void takeStack()
 }
 void injectFriend()
 {
-    // if(inmotion != 0)
-    //     return;
+    if(inmotion != 0)
+        return;
     
     int fcn = -1;
     for(int i=0; i < max_friends; i++)
@@ -744,12 +744,8 @@ void injectFriend()
             {
                 coins[i].a = esRandFloat(-PI, PI);
                 coins[i].r = esModelArray[coins[i].type-7].radius;
-                if(coins[i].r > 0.5f)
-                {
-                    coins[i].rs = esRandFloat(0.38f, 0.7f);
-                    coins[i].r *= coins[i].rs;
-                }
-                else{coins[i].rs = 0.f;}
+                coins[i].rs = esRandFloat(0.7f, 2.2f);
+                coins[i].r *= coins[i].rs;
             }
             else
             {
@@ -1066,11 +1062,8 @@ void newGame()
         {
             coins[i].a = esRandFloat(-PI, PI);
             coins[i].r = esModelArray[coins[i].type-7].radius;
-            if(coins[i].r > 0.5f)
-            {
-                coins[i].rs = esRandFloat(0.38f, 0.7f);
-                coins[i].r *= coins[i].rs;
-            }
+            coins[i].rs = esRandFloat(0.7f, 2.2f);
+            coins[i].r *= coins[i].rs;
         }
         else
         {
@@ -1339,6 +1332,9 @@ void main_loop()
         mRotY(&view, 50.f*DEG2RAD);
     else
         mRotY(&view, 62.f*DEG2RAD);
+
+    // inject a new Friend if time has come
+    injectFriend();
     
     // prep scene for rendering
     if(csp != 1)
@@ -1445,9 +1441,6 @@ void main_loop()
             }
         }
     }
-
-    // inject a new Friend if time has come
-    injectFriend();
 
     // gold stack
     modelBind3(&mdlCoin);
@@ -2290,7 +2283,7 @@ int main(int argc, char** argv)
     register_f492();register_f493();register_f494();register_f495();register_f496();register_f497();
     register_f498();register_f499();register_f500();register_f501();register_f502();register_f503();
     register_f504();register_f505();register_f506();register_f507();register_f508();register_f509();
-    register_f510();register_f511();register_f512();register_f513();//register_f514();
+    register_f510();register_f511();register_f512();register_f513();register_f514();
 
 //*************************************
 // compile & link shader program
@@ -2299,7 +2292,7 @@ int main(int argc, char** argv)
     makeLambert3();
 
 //*************************************
-// conFriend render options
+// configure render options
 //*************************************
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
