@@ -1915,7 +1915,7 @@ int main(int argc, char** argv)
     printf("----\n");
 #ifndef __EMSCRIPTEN__
     printf("Argv(2): msaa, speed\n");
-    printf("e.g; ./uc 16 1.6\n");
+    printf("e.g; ./uc 16 3.6\n");
     printf("----\n");
 #endif
     printf("Left Click = Release coin\n");
