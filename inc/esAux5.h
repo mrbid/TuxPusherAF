@@ -67,9 +67,9 @@ typedef struct
 
 #ifdef MAX_MODELS
     ESModel esModelArray[MAX_MODELS];
-    uint esModelArray_index = 0;
-    uint esBoundModel = 0;
-    void esBindModel(const uint id)
+    unsigned int esModelArray_index = 0;
+    unsigned int esBoundModel = 0;
+    void esBindModel(const unsigned int id)
     {
         glBindBuffer(GL_ARRAY_BUFFER, esModelArray[id].vid);
         glVertexAttribPointer(position_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
@@ -91,7 +91,7 @@ typedef struct
         //printf("esRenderModel(%u): %u %u\n", id, esModelArray[id].ni, esModelArray[id].itp);
         glDrawElements(GL_TRIANGLES, esModelArray[esBoundModel].ni, esModelArray[esBoundModel].itp, 0);
     }
-    void esBindRender(const uint id)
+    void esBindRender(const unsigned int id)
     {
         glBindBuffer(GL_ARRAY_BUFFER, esModelArray[id].vid);
         glVertexAttribPointer(position_id, 3, GL_FLOAT, GL_FALSE, 0, 0);
