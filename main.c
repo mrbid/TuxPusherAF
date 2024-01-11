@@ -911,7 +911,7 @@ uint stepCollisions()
                     {
                         if(j >= 0 && j <= max_friends)
                         {
-                            if(coins[j].type < 7)
+                            if(coins[j].type > 0 && coins[j].type < 7)
                             {
                                 if(trophies_get(coins[j].type-1) == 1) // already have? then reward coins!
                                 {
@@ -943,7 +943,7 @@ uint stepCollisions()
                         {
                             if(j >= 0 && j <= max_friends)
                             {
-                                if(coins[j].type < 7)
+                                if(coins[j].type > 0 && coins[j].type < 7)
                                 {
                                     if(trophies_get(coins[j].type-1) == 1) // already have? then reward coins!
                                     {
@@ -976,7 +976,7 @@ uint stepCollisions()
                     {
                         if(j >= 0 && j <= max_friends)
                         {
-                            if(coins[j].type < 7)
+                            if(coins[j].type > 0 && coins[j].type < 7)
                             {
                                 if(trophies_get(coins[j].type-1) == 1) // already have? then reward coins!
                                 {
@@ -1005,7 +1005,7 @@ uint stepCollisions()
                     {
                         if(j >= 0 && j <= max_friends)
                         {
-                            if(coins[j].type < 7)
+                            if(coins[j].type > 0 && coins[j].type < 7)
                             {
                                 if(trophies_get(coins[j].type-1) == 1) // already have? then reward coins!
                                 {
