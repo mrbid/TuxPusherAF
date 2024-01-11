@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>TuxPusher.com</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="manifest" href='data:application/manifest+json,{"display":"standalone"}' />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+        
+        <link href="favicon.png" rel="shortcut icon">
+        <link href="favicon.png" rel="apple-touch-icon">
+        <link href="favicon.png" rel="apple-touch-icon-precomposed">
+        <link href="favicon.png" rel="icon" sizes="192x192">
+        
+        <meta property="og:image" content="favicon.png">
+        <meta property="twitter:image:src" content="favicon.png">
+        <meta name="image" content="favicon.png">
+        <meta itemprop="image" content="favicon.png">
+        <meta name="og:image" content="favicon.png">
+        <meta name="description" content="A FOSS Tux themed 3D coin pusher game.">
+        <meta itemprop="name" content="A FOSS Tux themed 3D coin pusher game.">
+        <meta name="og:description" content="A FOSS Tux themed 3D coin pusher game.">
+        <meta name="og:title" content="TuxPusher.com">
+        <meta name="og:site_name" content="TuxPusher.com">
+        <meta name="og:type" content="website">
+        <meta name="og:url" content="https://TuxPusher.com">
+    
+        <meta name="theme-color" content="#ffbf00">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <style>
+            * { margin:0; padding:0; }
+            html, body { width:100%; height:100%; overflow:hidden; background-color:#000; user-select:none; }
+        </style>
+    </head>
+
+    <body onclick="javascript:document.getElementById('mframe').focus()">
+        <div id="mdiv" style="position:relative;">
+        <iframe id="mframe" src="game.html" width=100% height=100% frameborder=0></iframe>
+        </div>
+        <script>
+            function resize_event()
+            {
+                var mdiv = document.getElementById('mdiv');
+                var winw = parseInt(document.body.clientWidth);
+                var winh = parseInt(document.body.clientHeight);
+
+                var max_winw = winh + (winh * 0.34);
+                if(winw > max_winw)
+                {
+                    mdiv.style.width = winh + (winh * 0.34);
+                    mdiv.style.height = winw - (winw * 0.2520);
+
+                    mdiv.style.top = 0;
+                    if(winw > parseInt(mdiv.style.width))
+                        mdiv.style.left = (winw-parseInt(mdiv.style.width))/2;
+                }
+                else if(winw < max_winw)
+                {
+                    mdiv.style.width = winh + (winh * 0.34);
+                    mdiv.style.height = winw - (winw * 0.2520);
+
+                    mdiv.style.left = 0;
+                    if(winh > parseInt(mdiv.style.height))
+                        mdiv.style.top = (winh-parseInt(mdiv.style.height))/2;
+                }
+            }
+            window.onload = function()
+            {
+                resize_event();
+                window.addEventListener('resize', resize_event);
+                document.getElementById('mframe').focus();
+            }
+        </script>
+    </body>
+</html>

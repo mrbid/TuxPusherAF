@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=TuxPusher & Friends
+Comment=A fun coin pusher game featuring Tux & Friends!
+StartupNotify=false
+Exec=tuxpusheraf
+Icon=tuxpusheraf
+Terminal=false
+Type=Application
+Categories=Game;ArcadeGame;KidsGame;Graphics
