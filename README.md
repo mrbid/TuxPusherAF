@@ -1,5 +1,5 @@
 # TuxPusher & Friends
-A Tux themed 3D coin pusher game.
+An improved and extended version over [the original.](https://github.com/mrbid/TuxPusher)
 
 [![Screenshot of the Tux Pusher game](https://dashboard.snapcraft.io/site_media/appmedia/2023/01/Screenshot_2023-01-24_23-57-35.png)](https://www.youtube.com/watch?v=39AIfMu2cYA "Tux Pusher Game Video")
 
@@ -16,7 +16,6 @@ _Just move around your mouse and click to release a coin._
 - F = FPS to console.
 
 ### Play Options
-- **WebGL:** https://TuxPusher.com / https://tuxpusher.github.io
 - **Snapcraft:** https://snapcraft.io/tuxpusheraf
 - **Flathub:** https://flathub.org/en-GB/apps/com.tuxpusher.TuxPusherAF
 - **Other Builds:** https://github.com/mrbid/TuxPusherAF/releases/
