@@ -739,7 +739,7 @@ void injectFriend()
         {
             active_coin = i;
             fcn = i;
-            coins[i].type = esRand(1, 519);
+            coins[i].type = esRand(1, 520);
             if(coins[i].type > 6)
             {
                 coins[i].a = esRandFloat(-PI, PI);
@@ -1056,7 +1056,7 @@ void newGame()
     // trophies
     for(int i=0; i < max_friends; i++)
     {
-        coins[i].type = esRand(1, 519);
+        coins[i].type = esRand(1, 520);
         coins[i].rs = 0.f;
         if(coins[i].type > 6)
         {
