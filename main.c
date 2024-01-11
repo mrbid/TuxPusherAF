@@ -1462,7 +1462,7 @@ void main_loop()
             modelBind3(&mdlCoin);
 
         mIdent(&model);
-        mScale(&model, 1.f, 1.f, 2.f);
+        //mScale(&model, 1.f, 1.f, 2.f);
         mSetPos3(&model, coins[i].x, coins[i].y, 0.f);
         mRotZ(&model, coins[i].a);
         mMul(&modelview, &model, &view);
