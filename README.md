@@ -20,7 +20,7 @@ _Just move around your mouse and click to release a coin._
 ### Play Options
 - **Snapcraft:** https://snapcraft.io/tuxpusheraf
 - **Flathub:** https://flathub.org/en-GB/apps/com.tuxpusher.TuxPusherAF
-- **Windows:** https://github.com/mrbid/TuxPusherAF/releases/download/1.0/TuxPusherAF_windows.zip
+- **Windows:** https://github.com/mrbid/TuxPusherAF/releases/download/1.0/TuxPusherAF_win.zip
 - **Other Builds:** https://github.com/mrbid/TuxPusherAF/releases/
 
 ---
