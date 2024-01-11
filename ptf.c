@@ -50,6 +50,11 @@ int main(int argc, char** argv)
     char* p = strstr(name, ".");
     if(p != NULL){*p = 0x00;}
 
+    // check if its been generated
+    char outfile[256];
+    sprintf(outfile, "../../high/%s.h", name);
+    if(access(outfile, F_OK) == 0){return 0;}
+
     // generate the read file path (reads .ply files from a local `ply/` directory)
     char readfile[32] = {0};
     strcat(readfile, "../ply/");
@@ -103,7 +108,7 @@ int main(int argc, char** argv)
                 strcat(vertex_array, add);
                 numvert++;
 
-                if(vz < 0.05f) // extract object base radius
+                if(vz < 0.1f) // extract object base radius
                 {
                     float tmp = fabsf(vx);
                     if(tmp > radius){radius = tmp;}
@@ -150,8 +155,6 @@ int main(int argc, char** argv)
     color_array[strlen(color_array)-1] = 0x00;
 
     // output the resultant file
-    char outfile[256];
-    sprintf(outfile, "../../high/%s.h", name);
     f = fopen(outfile, "w");
     while(f == NULL)
     {

@@ -16,7 +16,7 @@
 		</ul>
 		<p>Controls: Just move around your mouse and click to release a coin.</p>
 		<ul>
-			<li>Left Click = Release coin.</li>
+			<li>Left Click = Release coin. (hold to auto-place silver coins)</li>
 			<li>Right Click = Show/Hide cursor.</li>
 			<li>C = Orthographic/Perspective.</li>
 			<li>F = FPS to console.</li>
