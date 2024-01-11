@@ -1,6 +1,8 @@
 /*
     James William Fletcher (github.com/mrbid)
-        October 2022 - December 2023
+        October 2022 - January 2024
+
+    !!! This has been modified for TuxPusherAF to calculate and output coin base radius per model.
 
     Converts ASCII PLY (.ply) file to C OpenGL buffers.
     
