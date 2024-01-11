@@ -1179,7 +1179,9 @@ void main_loop()
 // time delta for interpolation
 //*************************************
     static f32 lt = 0;
+#ifndef __EMSCRIPTEN__
     fc++;
+#endif
     t = f32Time();
     dt = t-lt;
     lt = t;
