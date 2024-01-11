@@ -37,7 +37,7 @@
     #include <SDL2/SDL_opengles2.h>
 #endif
 
-#define MAX_MODELS 518
+#define MAX_MODELS 515
 #include "esAux5.h"
 #include "res.h"
 
@@ -569,6 +569,7 @@
 #include "assets/friends/f511.h"
 #include "assets/friends/f512.h"
 #include "assets/friends/f513.h"
+//#include "assets/friends/f514.h"
 
 #define uint GLushort // it's a short don't forget that
 #define sint GLshort  // and this.
@@ -641,7 +642,7 @@ typedef struct
     f32 x, y, r, rs, a;
     signed short type;
 } coin;
-#define MAX_COINS 130
+#define MAX_COINS 140
 coin coins[MAX_COINS] = {0};
 
 // Bit flag based method for storing trophie states, 
@@ -654,7 +655,7 @@ char trophies_bits = 0;
 #define trophies_clear() trophies_bits = 0
 #define trophies_get(x) (trophies_bits >> x) & 0b1
 #define trophies_all() trophies_bits
-const uint max_trophy = 6;
+const uint max_friends = 6;
 
 //*************************************
 // game functions
@@ -674,7 +675,7 @@ forceinline f32 f32Time()
 }
 void setActiveCoin(const uint color)
 {
-    for(int i=max_trophy; i < MAX_COINS; i++)
+    for(int i=max_friends; i < MAX_COINS; i++)
     {
         if(coins[i].type == -1)
         {
@@ -726,13 +727,13 @@ void takeStack()
         coins[active_coin].y = -4.54055f;
     }
 }
-void injectFigure()
+void injectFriend()
 {
-    if(inmotion != 0)
-        return;
+    // if(inmotion != 0)
+    //     return;
     
     int fcn = -1;
-    for(int i=0; i < max_trophy; i++)
+    for(int i=0; i < max_friends; i++)
     {
         if(coins[i].type == -1)
         {
@@ -912,7 +913,7 @@ uint stepCollisions()
                     const f32 fl = (-1.65169f + (1.067374f*(fabsf(coins[j].y-3.70642f) * 2.503692947f)));
                     if(coins[j].x < fl)
                     {
-                        if(j >= 0 && j <= max_trophy)
+                        if(j >= 0 && j <= max_friends)
                         {
                             if(coins[j].type < 7)
                             {
@@ -944,7 +945,7 @@ uint stepCollisions()
                         const f32 fr = (1.65169f - (1.067374f*(fabsf(coins[j].y-3.70642f) * 2.503692947f)));
                         if(coins[j].x > fr)
                         {
-                            if(j >= 0 && j <= max_trophy)
+                            if(j >= 0 && j <= max_friends)
                             {
                                 if(coins[j].type < 7)
                                 {
@@ -977,7 +978,7 @@ uint stepCollisions()
                 {
                     if(coins[j].x >= -0.584316f && coins[j].x <= 0.584316f)
                     {
-                        if(j >= 0 && j <= max_trophy)
+                        if(j >= 0 && j <= max_friends)
                         {
                             if(coins[j].type < 7)
                             {
@@ -1006,7 +1007,7 @@ uint stepCollisions()
                     }
                     else
                     {
-                        if(j >= 0 && j <= max_trophy)
+                        if(j >= 0 && j <= max_friends)
                         {
                             if(coins[j].type < 7)
                             {
@@ -1057,7 +1058,7 @@ void newGame()
     }
 
     // trophies
-    for(int i=0; i < max_trophy; i++)
+    for(int i=0; i < max_friends; i++)
     {
         coins[i].type = esRand(1, 519);
         coins[i].rs = 0.f;
@@ -1088,7 +1089,7 @@ void newGame()
 
     // coins
     const f32 lt = f32Time();
-    for(int i=max_trophy; i < MAX_COINS; i++)
+    for(int i=max_friends; i < MAX_COINS; i++)
     {
         coins[i].x = fRandFloat(-3.40863f, 3.40863f);
         coins[i].y = fRandFloat(-4.03414f, 1.45439f-coins[i].r);
@@ -1338,9 +1339,6 @@ void main_loop()
         mRotY(&view, 50.f*DEG2RAD);
     else
         mRotY(&view, 62.f*DEG2RAD);
-
-    // inject a new figure if time has come
-    injectFigure();
     
     // prep scene for rendering
     if(csp != 1)
@@ -1417,6 +1415,25 @@ void main_loop()
         {
             inmotion = 0;
 
+            if(md == 1 && silver_stack > 0.f) // if left mouse is down, and have silvers, auto re-fire
+            {
+                if(gameover > 0.f)
+                {
+                    if(t > gameover+3.0f)
+                    {
+                        newGame();
+                        if(PUSH_SPEED < 32.f)
+                        {
+                            PUSH_SPEED += 1.f;
+                            MAX_PUSH_SPEED = PUSH_SPEED;
+                            // should have set the window title here, oh well
+                        }
+                    }
+                    return;
+                }
+                takeStack();
+            }
+
             if(isnewcoin > 0)
             {
                 if(isnewcoin == 1)
@@ -1428,6 +1445,9 @@ void main_loop()
             }
         }
     }
+
+    // inject a new Friend if time has come
+    injectFriend();
 
     // gold stack
     modelBind3(&mdlCoin);
@@ -1463,7 +1483,7 @@ void main_loop()
     }
 
     // pitch coins
-    for(int i=max_trophy; i < MAX_COINS; i++)
+    for(int i=max_friends; i < MAX_COINS; i++)
     {
         if(coins[i].type == -1){continue;}
         
@@ -1471,6 +1491,25 @@ void main_loop()
             modelBind3(&mdlCoinSilver);
         else
             modelBind3(&mdlCoin);
+
+        ///
+        uint halflit = 0;
+        for(uint j = 0; j < max_friends; j++)
+        {
+            const float xm = (coins[i].x - coins[j].x);
+            const float ym = (coins[i].y - coins[j].y);
+            const float rm = (coins[i].r + coins[j].r)*2.5f;
+            if(xm*xm + ym*ym < rm*rm)
+            {
+                halflit=1;
+                break;
+            }
+        }
+        if(halflit > 0)
+            glUniform1f(ambient_id, 0.333f);
+        else
+            glUniform1f(ambient_id, 0.148f);
+        ///
 
         mIdent(&model);
         //mScale(&model, 1.f, 1.f, 2.f);
@@ -1488,7 +1527,7 @@ void main_loop()
     glUniform1f(ambient_id, 0.148f);
 
     // trophies
-    for(int i=0; i < max_trophy; i++)
+    for(int i=0; i < max_friends; i++)
     {
         if(coins[i].type == -1){continue;}
         
@@ -1908,11 +1947,6 @@ void printAttrib(SDL_GLattr attr, char* name)
 #endif
 int main(int argc, char** argv)
 {
-    // for(uint i = 0; i < 514; i++)
-    //     //printf("#include \"assets/friends/f%u.h\"\n", i);
-    //     printf("register_f%u();\n", i);
-    // return 0;
-
     // allow custom msaa level
     int msaa = 16;
     if(argc >= 2){msaa = atoi(argv[1]);}
@@ -1929,7 +1963,7 @@ int main(int argc, char** argv)
     printf("e.g; ./uc 16 3.6\n");
     printf("----\n");
 #endif
-    printf("Left Click = Release coin\n");
+    printf("Left Click = Release coin (hold to auto-place silver coins)\n");
     printf("Right Click = Show/hide cursor\n");
     printf("C = Orthographic/Perspective\n");
 #ifndef __EMSCRIPTEN__
@@ -2256,7 +2290,7 @@ int main(int argc, char** argv)
     register_f492();register_f493();register_f494();register_f495();register_f496();register_f497();
     register_f498();register_f499();register_f500();register_f501();register_f502();register_f503();
     register_f504();register_f505();register_f506();register_f507();register_f508();register_f509();
-    register_f510();register_f511();register_f512();register_f513();
+    register_f510();register_f511();register_f512();register_f513();//register_f514();
 
 //*************************************
 // compile & link shader program
@@ -2265,7 +2299,7 @@ int main(int argc, char** argv)
     makeLambert3();
 
 //*************************************
-// configure render options
+// conFriend render options
 //*************************************
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
