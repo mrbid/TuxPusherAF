@@ -912,7 +912,7 @@ uint stepCollisions()
                     const f32 fl = (-1.65169f + (1.067374f*(fabsf(coins[j].y-3.70642f) * 2.503692947f)));
                     if(coins[j].x < fl)
                     {
-                        if(j >= 0 && j <= 3)
+                        if(j >= 0 && j <= max_trophy)
                         {
                             if(coins[j].type < 7)
                             {
@@ -944,7 +944,7 @@ uint stepCollisions()
                         const f32 fr = (1.65169f - (1.067374f*(fabsf(coins[j].y-3.70642f) * 2.503692947f)));
                         if(coins[j].x > fr)
                         {
-                            if(j >= 0 && j <= 3)
+                            if(j >= 0 && j <= max_trophy)
                             {
                                 if(coins[j].type < 7)
                                 {
@@ -977,7 +977,7 @@ uint stepCollisions()
                 {
                     if(coins[j].x >= -0.584316f && coins[j].x <= 0.584316f)
                     {
-                        if(j >= 0 && j <= 3)
+                        if(j >= 0 && j <= max_trophy)
                         {
                             if(coins[j].type < 7)
                             {
@@ -1006,7 +1006,7 @@ uint stepCollisions()
                     }
                     else
                     {
-                        if(j >= 0 && j <= 3)
+                        if(j >= 0 && j <= max_trophy)
                         {
                             if(coins[j].type < 7)
                             {
@@ -1021,10 +1021,9 @@ uint stepCollisions()
                                     trophies_set(coins[j].type-1);
                                 }
                             }
-                            else{silver_stack += esRandFloat(8.f, 32.f);}
+                            else{silver_stack += esRandFloat(16.f, 32.f);}
                         }
-                        else
-                            silver_stack += 1.f;
+                        else{silver_stack += 1.f;}
 
                         coins[j].type = -1;
                     }
