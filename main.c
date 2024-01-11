@@ -922,7 +922,10 @@ uint stepCollisions()
                                     silver_stack += 6.f;
                                 }
                                 else
+                                {
+                                    gold_stack += 12.f;
                                     trophies_set(coins[j].type-1);
+                                }
                             }
                             else{silver_stack += esRandFloat(8.f, 16.f);}
                         }
@@ -951,7 +954,10 @@ uint stepCollisions()
                                         silver_stack += 6.f;
                                     }
                                     else
+                                    {
+                                        gold_stack += 12.f;
                                         trophies_set(coins[j].type-1);
+                                    }
                                 }
                                 else{silver_stack += esRandFloat(8.f, 16.f);}
                             }
@@ -981,7 +987,10 @@ uint stepCollisions()
                                     silver_stack += 6.f;
                                 }
                                 else
+                                {
+                                    gold_stack += 12.f;
                                     trophies_set(coins[j].type-1);
+                                }
                             }
                             else{silver_stack += esRandFloat(16.f, 32.f);}
                         }
@@ -1007,7 +1016,10 @@ uint stepCollisions()
                                     silver_stack += 6.f;
                                 }
                                 else
+                                {
+                                    gold_stack += 12.f;
                                     trophies_set(coins[j].type-1);
+                                }
                             }
                             else{silver_stack += esRandFloat(8.f, 32.f);}
                         }

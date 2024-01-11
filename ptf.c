@@ -103,7 +103,7 @@ int main(int argc, char** argv)
                 strcat(vertex_array, add);
                 numvert++;
 
-                if(vz < 0.1f) // extract object base radius
+                if(vz < 0.05f) // extract object base radius
                 {
                     float tmp = fabsf(vx);
                     if(tmp > radius){radius = tmp;}
