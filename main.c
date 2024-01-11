@@ -1040,7 +1040,7 @@ void newGame()
     for(int i=0; i < MAX_COINS; i++)
     {
         coins[i].type = -1;
-        coins[i].r = 0.34f;
+        coins[i].r = 0.3f;
         coins[i].a = 0.f;
         coins[i].rs = 0.f;
     }
