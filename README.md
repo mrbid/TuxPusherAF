@@ -1,7 +1,7 @@
 # TuxPusher & Friends
 An improved and extended version over [the original.](https://github.com/mrbid/TuxPusher)
 
-[![Screenshot of the Tux Pusher game](https://dashboard.snapcraft.io/site_media/appmedia/2023/01/Screenshot_2023-01-24_23-57-35.png)](https://www.youtube.com/watch?v=39AIfMu2cYA "Tux Pusher Game Video")
+[![Screenshot of the Tux Pusher game](https://dashboard.snapcraft.io/site_media/appmedia/2024/01/Screenshot_2024-01-11_05-38-10.png)](https://www.youtube.com/watch?v=39AIfMu2cYA "Tux Pusher Game Video")
 
 ### Mechanics / Rules
 - Getting a gold coin in a silver slot rewards you 2x silver coins.
