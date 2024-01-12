@@ -35,7 +35,7 @@ appimage:
 
 webgl:
 	mkdir -p web
-	emcc main.c $(INCLUDE_HEADERS) -O3 --closure 1 -s FILESYSTEM=0 -s USE_SDL=2 -s ENVIRONMENT=web -o web/game.html --shell-file t.html
+	emcc main.c $(INCLUDE_HEADERS) -O3 --closure 1 -s FILESYSTEM=0 -s USE_SDL=2 -s TOTAL_MEMORY=512MB -s ENVIRONMENT=web -o web/game.html --shell-file t.html
 	emrun --browser chrome web/index.html
 
 webrun:
@@ -49,8 +49,6 @@ glfw:
 
 release: plygame glfw debify appimage
 	i686-w64-mingw32-gcc -DBUILD_GLFW main.c glad_gl.c -Ofast -I inc -Llib -lglfw3dll -lm -o release/$(PRJ_NAME).exe
-	strip --strip-unneeded release/$(PRJ_NAME).exe
-	upx --lzma --best release/$(PRJ_NAME).exe
 	cp lib/glfw3.dll release/glfw3.dll
 	strip --strip-unneeded release/glfw3.dll
 	upx --lzma --best release/glfw3.dll
