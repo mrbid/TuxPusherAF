@@ -35,7 +35,7 @@ appimage:
 
 webgl:
 	mkdir -p web
-	emcc main.c $(INCLUDE_HEADERS) -O3 --closure 1 -s FILESYSTEM=0 -s USE_SDL=2 -s TOTAL_MEMORY=512MB -s ENVIRONMENT=web -o web/game.html --shell-file t.html
+	emcc main.c $(INCLUDE_HEADERS) -O3 --closure 1 -s FILESYSTEM=0 -s USE_SDL=2 -s TOTAL_MEMORY=2048MB -s ENVIRONMENT=web -o web/game.html --shell-file t.html
 	emrun --browser chrome web/index.html
 
 webrun:
