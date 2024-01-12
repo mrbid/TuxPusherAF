@@ -609,7 +609,6 @@ mat projection, view, model, modelview;
 
 // render state inputs
 vec lightpos = {0.f, 10.f, 13.f};
-int csp = -1; // current shader program
 
 // models
 ESModel mdlPlane;
@@ -1343,14 +1342,9 @@ void main_loop()
     injectFriend();
     
     // prep scene for rendering
-    if(csp != 1)
-    {
-        shadeLambert3(&position_id, &projection_id, &modelview_id, &lightpos_id, &normal_id, &color_id, &ambient_id, &opacity_id);
-        glUniformMatrix4fv(projection_id, 1, GL_FALSE, (f32*)&projection.m[0][0]);
-        glUniform3f(lightpos_id, lightpos.x, lightpos.y, lightpos.z);
-        glUniform1f(ambient_id, 0.148f);
-        csp = 1;
-    }
+    shadeLambert3(&position_id, &projection_id, &modelview_id, &lightpos_id, &normal_id, &color_id, &ambient_id, &opacity_id);
+    glUniformMatrix4fv(projection_id, 1, GL_FALSE, (f32*)&projection.m[0][0]);
+    glUniform3f(lightpos_id, lightpos.x, lightpos.y, lightpos.z);
     glUniform1f(ambient_id, 0.148f);
 
     // render scene
@@ -1680,7 +1674,6 @@ void main_loop()
     {
         shadeFullbright(&position_id, &projection_id, &modelview_id, &color_id, &opacity_id);
         glUniformMatrix4fv(projection_id, 1, GL_FALSE, (f32*)&projection.m[0][0]);
-        csp = 0;
 
         if(std < 6.75f)
         {
