@@ -1054,6 +1054,7 @@ void newGame()
     }
 
     // trophies
+    f32 lt = f32Time();
     for(int i=0; i < max_friends; i++)
     {
         coins[i].type = esRand(1, 520);
@@ -1073,15 +1074,18 @@ void newGame()
 
         coins[i].x = fRandFloat(-3.40863f, 3.40863f);
         coins[i].y = fRandFloat(-4.03414f, 1.45439f-coins[i].r);
+        uint tl = 0;
         while(insidePitch(coins[i].x, coins[i].y, coins[i].r) == 0 || collision(i) == 1)
         {
             coins[i].x = fRandFloat(-3.40863f, 3.40863f);
             coins[i].y = fRandFloat(-4.03414f, 1.45439f-coins[i].r);
+            if(f32Time()-lt > 0.033f){tl=1;break;} // 33ms timeout
         }
+        if(tl==1){break;}
     }
 
     // coins
-    const f32 lt = f32Time();
+    lt = f32Time();
     for(int i=max_friends; i < MAX_COINS; i++)
     {
         coins[i].x = fRandFloat(-3.40863f, 3.40863f);
@@ -1514,12 +1518,6 @@ void main_loop()
         glUniformMatrix4fv(modelview_id, 1, GL_FALSE, (f32*)&modelview.m[0][0]);
         glDrawElements(GL_TRIANGLES, coin_numind, GL_UNSIGNED_SHORT, 0);
     }
-
-    // tux is fancy
-    shadeLambert3(&position_id, &projection_id, &modelview_id, &lightpos_id, &normal_id, &color_id, &ambient_id, &opacity_id);
-    glUniformMatrix4fv(projection_id, 1, GL_FALSE, (f32*)&projection.m[0][0]);
-    glUniform3f(lightpos_id, lightpos.x, lightpos.y, lightpos.z);
-    glUniform1f(ambient_id, 0.148f);
 
     // trophies
     for(int i=0; i < max_friends; i++)
