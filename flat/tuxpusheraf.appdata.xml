@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-	<id type="desktop">tuxpusheraf.desktop</id>
+<component type="desktop-application">
+	<id>com.tuxpusher.TuxPusherAF</id>
 	<metadata_license>CC-BY-4.0</metadata_license>
 	<project_license>GPL-2.0-only</project_license>
+	<developer_name>James William Fletcher</developer_name>
+	<launchable type="desktop-id">com.tuxpusher.TuxPusherAF.desktop</launchable>
 	<name>TuxPusher &amp; Friends</name>
 	<summary>515 Unique Prizes + 6 Penguins</summary>
 	<description>
@@ -17,13 +19,22 @@
 		<p>Special thanks to Andy Cuccaro who modelled the big T himself, Tux! andycuccaro.gumroad.com</p>
 	</description>
 	<screenshots>
-		<screenshot>https://dashboard.snapcraft.io/site_media/appmedia/2024/01/Screenshot_2024-01-11_05-37-09_y4cdE5P.png</screenshot>
-		<screenshot>https://dashboard.snapcraft.io/site_media/appmedia/2024/01/Screenshot_2024-01-11_05-37-55.png</screenshot>
-		<screenshot>https://dashboard.snapcraft.io/site_media/appmedia/2024/01/Screenshot_2024-01-11_05-38-10.png</screenshot>
+		<screenshot type="default">
+			<image>https://dashboard.snapcraft.io/site_media/appmedia/2024/01/Screenshot_2024-01-11_05-37-09_y4cdE5P.png</image>
+			<caption>TuxPusher &amp; Friends Screenshot</caption>
+		</screenshot>
+		<screenshot type="default">
+			<image>https://dashboard.snapcraft.io/site_media/appmedia/2024/01/Screenshot_2024-01-11_05-37-55.png</image>
+			<caption>TuxPusher &amp; Friends Screenshot</caption>
+		</screenshot>
+		<screenshot type="default">
+			<image>https://dashboard.snapcraft.io/site_media/appmedia/2024/01/Screenshot_2024-01-11_05-38-10.png</image>
+			<caption>TuxPusher &amp; Friends Screenshot</caption>
+		</screenshot>
 	</screenshots>
 	<url type="homepage">https://github.com/mrbid/TuxPusherAF</url>
 	<releases>
 		<release version="1.0" date="2024-01-09" />
 	</releases>
 	<content_rating type="oars-1.0" />
-</application>
+</component>
