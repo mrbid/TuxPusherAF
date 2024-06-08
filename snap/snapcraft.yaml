@@ -1,6 +1,6 @@
 name: tuxpusheraf
 base: core22
-version: '1.0'
+version: '1.01'
 summary: This one is better, featuring Tux & Friends!
 description: |
   Just move around your mouse and click to release a coin.
